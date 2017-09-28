@@ -5,12 +5,17 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_detail.*
+import android.R.menu
+import android.view.MenuInflater
+
+
 
 class DetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         val bundle = intent.extras
         val name = bundle.getString("name")
         detailTextView.text = name
@@ -20,13 +25,13 @@ class DetailActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu,menu)
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        var id = item!!.itemId
-        if(id == R.id.home){
-            finish()
-        }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        finish()
+        return true
+
     }
 }
